@@ -16,10 +16,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ALLOWED_ORIGINS = [
-        'https://imageclassification-front-e7f2f210817c.herokuapp.com',
-        'https://imageclassification-de89d7d50c49.herokuapp.com/',
-    ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +50,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+)
 TEMPLATES = [
   {
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
