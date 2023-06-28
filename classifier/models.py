@@ -1,7 +1,6 @@
 import cv2
 import ssl
 import numpy as np
-import tensorflow as tf
 from django.db import models
 from PIL import Image
 
