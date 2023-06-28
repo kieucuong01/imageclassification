@@ -8,7 +8,9 @@ from PIL import Image
 # from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from pathlib import Path
 
+curr_path = str(Path(__file__).resolve().parent)
 
 class Classifier(models.Model):
   image = models.ImageField(upload_to='images')
@@ -25,7 +27,7 @@ class Classifier(models.Model):
       ssl._create_default_https_context = ssl._create_unverified_context
 
       test_image = Image.open(self.image)
-      model = load_model("C:\\Users\\ASUS\\Downloads\\image-classification-layout-customization-master\\image-classification-layout-customization-master\\backend\\classifier\\q1_model2.h5", compile=False)
+      model = load_model(curr_path+"/q1_model2.h5", compile=False)
 
       test_image = image.img_to_array(test_image)
       test_image = cv2.resize(test_image, (64, 64), interpolation=cv2.INTER_AREA)
