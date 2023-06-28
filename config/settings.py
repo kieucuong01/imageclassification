@@ -16,7 +16,10 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-
+CORS_ALLOWED_ORIGINS = [
+        'https://imageclassification-front-e7f2f210817c.herokuapp.com',
+        'https://imageclassification-de89d7d50c49.herokuapp.com/',
+    ]
 # Application definition
 
 INSTALLED_APPS = [
