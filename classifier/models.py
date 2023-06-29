@@ -26,7 +26,7 @@ class Classifier(models.Model):
       ssl._create_default_https_context = ssl._create_unverified_context
 
       test_image = Image.open(self.image)
-      model = load_model(curr_path+"/q1_model2.h5", compile=False)
+      model = load_model(curr_path+"/CNN_model.h5", compile=False)
 
       test_image = image.img_to_array(test_image)
       test_image = cv2.resize(test_image, (64, 64), interpolation=cv2.INTER_AREA)
@@ -51,3 +51,6 @@ class Classifier(models.Model):
       print('Classification failed:', e)
 
     return super().save(*args, **kwargs)
+
+
+
