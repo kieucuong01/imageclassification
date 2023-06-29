@@ -29,7 +29,7 @@ class Classifier(models.Model):
       model = load_model(curr_path+"/CNN_model.h5", compile=False)
 
       test_image = image.img_to_array(test_image)
-      test_image = cv2.resize(test_image, (128, 128), interpolation=cv2.INTER_AREA)
+      test_image = cv2.resize(test_image, (64, 64), interpolation=cv2.INTER_AREA)
 
       test_image = test_image/255
       test_image = np.expand_dims(test_image, axis = 0) 
