@@ -26,19 +26,25 @@ class Classifier(models.Model):
       ssl._create_default_https_context = ssl._create_unverified_context
 
       test_image = Image.open(self.image)
-      model = load_model(curr_path+"/CNN_model.h5", compile=False)
+
+      model = load_model(curr_path+"/CNN_best_model.h5", compile=False)
 
       test_image = image.img_to_array(test_image)
-      test_image = cv2.resize(test_image, (64, 64), interpolation=cv2.INTER_AREA)
+      test_image = cv2.resize(test_image, (128, 128))
 
       test_image = test_image/255
       test_image = np.expand_dims(test_image, axis = 0) 
+
       result = model.predict(test_image)
-      if max(result[0]) == result[0][0]:
+      print(result)
+
+      max_prob = max(result[0])
+
+      if max_prob == result[0][0]:
           prediction = 'glass'
-      elif max(result[0]) == result[0][1]:
+      elif max_prob == result[0][1]:
           prediction = 'metal'
-      elif max(result[0]) == result[0][2]:
+      elif max_prob == result[0][2]:
           prediction = 'paper'
       else:
           prediction = 'plastic'
