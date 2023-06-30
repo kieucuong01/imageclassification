@@ -4,7 +4,7 @@ import numpy as np
 from django.db import models
 from PIL import Image
 
-# from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from pathlib import Path
@@ -27,10 +27,11 @@ class Classifier(models.Model):
 
       test_image = Image.open(self.image)
 
-      model = load_model(curr_path+"/CNN_best_model.h5", compile=False)
+      model = load_model(curr_path+"/CNN_model.h5", compile=False)
 
+      # test_image = cv2.resize(test_image, (128, 128))
       test_image = image.img_to_array(test_image)
-      test_image = cv2.resize(test_image, (128, 128))
+      test_image = tf.image.resize(test_image, (64, 64))
 
       test_image = test_image/255
       test_image = np.expand_dims(test_image, axis = 0) 
